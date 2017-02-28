@@ -5,16 +5,19 @@
     <link href="css/c3.css" rel="stylesheet" type="text/css" />
     <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="css/bootstrap-theme.min.css" rel="stylesheet" type="text/css" />
-    <link href="css/carousel.css" rel="stylesheet">
+    <link href="css/swiper.min.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
 
     <script src="js/jquery.min.js"></script>
+    <script src="js/swiper.jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/underscore-min.js" charset="utf-8"></script>
     <script src="js/d3.min.js" charset="utf-8"></script>
     <script src="js/c3.min.js"></script>
     <script src="js/angular.min.js"></script>
     <script src="js/angular-c3.js"></script>
-    
+
+
     <!-- angular init -->
     <script src="app/app.js"></script>
 
@@ -71,56 +74,32 @@
         </div>
     </div>
 
-
-    <div id="myCarousel" class="carousel slide" data-ride="carousel">
-        <!-- Indicators -->
-        <ol class="carousel-indicators">
-            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-            <li data-target="#myCarousel" data-slide-to="1"></li>
-            <li data-target="#myCarousel" data-slide-to="2"></li>
-        </ol>
-        <div class="carousel-inner" role="listbox">
-            <div id="allDrinks" class="item active">
-                <!--<img class="first-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="First slide">-->
-                <div class="container">
-                    <div c3="donutChart"></div>
-                    <div class="carousel-caption">
-                        <h1>Amount of all drinks</h1>
-                        <!--
-                        <p>Note: If you're viewing this page via a <code>file://</code> URL, the "next" and "previous" Glyphicon
-                            buttons on the left and right might not load/display properly due to web browser security rules.</p>
-                        <p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p>
-                        -->
-                    </div>
-                </div>
+    <!-- Slider main container -->
+    <div class="swiper-container" >
+        <!-- Additional required wrapper -->
+        <div class="swiper-wrapper">
+            <!-- Slides -->
+            <div class="swiper-slide">
+                <div c3="donutChart"></div>
             </div>
-            <div id="top10Today" class="item">
-                <div class="container">
-                    <div c3="barChart"></div>
-                    <div class="carousel-caption">
-                        <h1>Top 10 drinks of today</h1>
-                    </div>
-                </div>
+            <div class="swiper-slide">
+                <div c3="barChart"></div>
             </div>
-            <div id="lastFewHours" class="item">
-                <div class="container">
-                    <div c3="pieChart"></div>
-                    <div class="carousel-caption">
-                        <h1>Amount of mixed drinks during the last few hours</h1>
-                    </div>
-                </div>
+            <div class="swiper-slide">
+                <div c3="pieChart"></div>
             </div>
+            ...
         </div>
-        <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
+        <!-- If we need pagination -->
+        <div class="swiper-pagination"></div>
+
+        <!-- If we need navigation buttons -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+
+        <!-- If we need scrollbar -->
+        <div class="swiper-scrollbar"></div>
     </div>
-    <!-- /.carousel -->
 
 
     <!-- Marketing messaging and featurettes
@@ -220,18 +199,18 @@
     </div>
     <!-- /.container -->
 
-
-
-
     <script>
-        // This event fires immediately when the slide instance method is invoked.
-        $('#myCarousel').on('slide.bs.carousel', function (e) { 
-            
-        });
-
-        // This event is fired when the carousel has completed its slide transition.
-        $('#myCarousel').on('slid.bs.carousel', function (e) {
-            
+        $(document).ready(function () {
+            //initialize swiper when document ready  
+            var mySwiper = new Swiper('.swiper-container', {
+                pagination: '.swiper-pagination',
+                nextButton: '.swiper-button-next',
+                prevButton: '.swiper-button-prev',
+                paginationClickable: true,
+                centeredSlides: true,
+                autoplay: 5000,
+                loop: false
+            })
         });
     </script>
 
