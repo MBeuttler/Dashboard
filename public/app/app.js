@@ -1,0 +1,1 @@
+var graphApp = angular.module('dashboard', ['c3']);

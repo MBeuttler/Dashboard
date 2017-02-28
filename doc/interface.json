@@ -1,0 +1,119 @@
+[
+    {
+        // list of drinks and their total amount
+        // route: .../dashboard/api/drinks  
+        "result": [
+            {
+                "name": "Pangalaktischer Donnergurgler",
+                "amount": 45
+            },
+            {
+                "name": "Erdbeer-Spritz",
+                "amount": 104
+            },
+            {
+                "name": "Zitronen Rülpser",
+                "amount": 67
+            }
+        ]
+    },
+    {
+        // amount of mixed drinks during the last few hours
+        // route: .../dashboard/api/drinks?hours=x
+        "result": [
+            {
+                "name": "Pangalaktischer Donnergurgler",
+                "amount": 10
+            },
+            {
+                "name": "Erdbeer-Spritz",
+                "amount": 15
+            },
+            {
+                "name": "Zitronen Rülpser",
+                "amount": 3
+            }
+        ]
+    },
+    {
+        // top ten drinks ever
+        // route: ...dashboard/api/drinks/top10
+        "result": [
+            {
+                "name": "Pangalaktischer Donnergurgler",
+                "rank": 1
+            },
+            {
+                "name": "Erdbeer-Spritz",
+                "rank": 8
+            },
+            {
+                "name": "Zitronen Rülpser",
+                "rank": 4
+            }
+        ]
+    },
+    {
+        // top ten drinks of today
+        // route: ...dashboard/api/drinks/top10?day=today
+        "result": [
+            {
+                "name": "Pangalaktischer Donnergurgler",
+                "rank": 1
+            },
+            {
+                "name": "Erdbeer-Spritz",
+                "rank": 8
+            },
+            {
+                "name": "Zitronen Rülpser",
+                "rank": 4
+            }
+        ]
+    },
+    {
+        // total amount of consumed juices in liter
+        // .../dashboard/api/juices
+        "result": [
+            {
+                "name": "Orangensaft",
+                "amount": 80
+            },
+            {
+                "name": "Apfelsaft",
+                "amount": 60
+            },
+            {
+                "name": "Erbsenpüree",
+                "amount": 10
+            }
+        ]
+    },
+    {
+        // amount of todays consumed juices in liter
+        // .../dashboard/api/juices?day=today
+        "result": [
+            {
+                "name": "Orangensaft",
+                "amount": 8
+            },
+            {
+                "name": "Apfelsaft",
+                "amount": 6
+            },
+            {
+                "name": "Erbsenpüree",
+                "amount": 1
+            }
+        ]
+    },
+    {
+        // histogram about workload over the day
+        // .../dashboard/api/workload
+        // x-Axis: time between 0 and 24
+        // y-Axis: amount
+        "result": [
+            
+        ]
+    }
+]

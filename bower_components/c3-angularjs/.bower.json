@@ -1,0 +1,36 @@
+{
+  "name": "c3-angularjs",
+  "version": "1.0.0",
+  "homepage": "https://github.com/dentboard/c3-angularjs",
+  "authors": [
+    "Sanket Chauhan <sanke93@gmail.com>"
+  ],
+  "description": "AngularJS directive for C3.js Charts",
+  "main": "c3-angular.js",
+  "keywords": [
+    "c3"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "c3": "~0.3.0",
+    "underscore": "~1.7.0",
+    "angular": "~1.2.26"
+  },
+  "_release": "1.0.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "v1.0.0",
+    "commit": "1d04a3e680b6265a2a93069dc82c7641d2f6c3db"
+  },
+  "_source": "https://github.com/dentboard/c3-angularjs.git",
+  "_target": "^1.0.0",
+  "_originalSource": "c3-angularjs",
+  "_direct": true
+}
