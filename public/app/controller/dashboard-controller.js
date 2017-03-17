@@ -31,7 +31,27 @@ angular
             }
         };
 
-        var rankbar = {
+        var topEver = {
+            data: {
+                x: 'x',
+                columns: [],
+                type: 'bar'
+            },
+            axis: {
+                rotated: true,
+                x: {
+                    type: 'category'
+                }
+            },
+            legend: {
+                show: false
+            },
+            transition: {
+                duration: 1000
+            }
+        };
+
+        var topToday = {
             data: {
                 x: 'x',
                 columns: [],
@@ -58,43 +78,36 @@ angular
             $scope.chart.data.hide.push(datum.id);
         };
 
-        $scope.getAllDrinks = function () {
-            dashboardDataService.getDrinks().then(function (data) {
-                var drinks = data.data.result;
-                donut.data.columns = [];
-
-                drinks.forEach(function (drink) {
-                    var item = [drink.name, drink.amount];
-                    donut.data.columns.push(item);
-                }, this);
-
-                $scope.donutChart = donut;
+        $scope.getDrinksByHours = function (hours) {
+            dashboardDataService.getDrinksByHours(hours).then(function (data) {
+                var drinks = data.data;
+                $scope.getactivatedlicensessince = drinks[0].getactivatedlicensessince;
             }, function (error) {
                 console.log(error);
             });
         }
 
 
-        $scope.getTopDrinks = function () {
-            dashboardDataService.getDrinks().then(function (data) {
-                var drinks = data.data.result;
+        $scope.getTopDrinksEver = function() {
+             dashboardDataService.getTopDrinksEver().then(function (data) {
+                var drinks = data.data;
                 drinks.sort(function (a, b) {
-                    return b.amount - a.amount;
+                    return b.rank - a.rank;
                 });
-                rankbar.data.columns = [];
+                topEver.data.columns = [];
 
                 var keys = ['x'];
                 var values = ['value'];
 
                 drinks.forEach(function (drink) {
-                    keys.push(drink.name);
-                    values.push(drink.amount);
+                    keys.push(drink.technologydataname);
+                    values.push(drink.rank);
                 }, this);
 
-                rankbar.data.columns.push(keys);
-                rankbar.data.columns.push(values);
+                topEver.data.columns.push(keys);
+                topEver.data.columns.push(values);
 
-                $scope.barChart = rankbar;
+                $scope.topEver = topEver;
 
             }, function (error) {
                 console.log(error);
@@ -102,27 +115,36 @@ angular
         }
 
 
+        $scope.getTopDrinksOfToday = function () {
+            dashboardDataService.getTopDrinksOfToday().then(function (data) {
+                var drinks = data.data;
+                drinks.sort(function (a, b) {
+                    return b.rank - a.rank;
+                });
+                topToday.data.columns = [];
 
-        $scope.getDrinksByHours = function () {
-            dashboardDataService.getDrinksByHours(5).then(function (data) {
-                var drinks = data.data.result;
-                pie.data.columns = [];
+                var keys = ['x'];
+                var values = ['value'];
 
                 drinks.forEach(function (drink) {
-                    var item = [drink.name, drink.amount];
-                    pie.data.columns.push(item);
+                    keys.push(drink.technologydataname);
+                    values.push(drink.rank);
                 }, this);
 
-                $scope.pieChart = pie;
+                topToday.data.columns.push(keys);
+                topToday.data.columns.push(values);
+
+                $scope.topToday = topToday;
+
             }, function (error) {
                 console.log(error);
             });
         }
 
         var getData = function () {
-            $scope.getAllDrinks();
-            $scope.getTopDrinks();
-            $scope.getDrinksByHours();
+            $scope.getDrinksByHours(5);
+            $scope.getTopDrinksOfToday();
+            $scope.getTopDrinksEver();
             nextLoad();
         }
 

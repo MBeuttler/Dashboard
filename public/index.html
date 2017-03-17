@@ -16,6 +16,8 @@
     <script src="js/c3.min.js"></script>
     <script src="js/angular.min.js"></script>
     <script src="js/angular-c3.js"></script>
+    <script src="js/moment.js"></script>
+    <script src="js/angular-moment.js"></script>
 
 
     <!-- angular init -->
@@ -40,10 +42,18 @@
         <div class="swiper-wrapper">
             <!-- Slides -->
             <div class="swiper-slide">
+                <div>{{getactivatedlicensessince}}</div>
+            </div>
+            <!--
+            <div class="swiper-slide">
                 <div c3="donutChart"></div>
             </div>
+            -->
             <div class="swiper-slide">
-                <div c3="barChart"></div>
+                <div c3="topEver"></div>
+            </div>
+            <div class="swiper-slide">
+                <div c3="topToday"></div>
             </div>
             <div class="swiper-slide">
                 <div c3="pieChart"></div>

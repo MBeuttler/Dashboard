@@ -1,20 +1,14 @@
-angular.module('dashboard').factory('DashboardDataService', function($q, $http) {
+angular.module('dashboard').factory('DashboardDataService', ['$q', '$http', 'moment', function($q, $http, moment) {
     
-    // api/drinks
-    function getDrinks() {
-        var defer = $q.defer();
-        $http.get('api/drinks').then(function(result) {
-            defer.resolve(result);
-        }, function(error) {
-            defer.reject(error);
-        });
-        return defer.promise;
-    };
-    
-    // api/drinks?hours=x
+    var host = 'http://localhost:3002';
+
     function getDrinksByHours(hours) {
         var defer = $q.defer();
-        $http.get('api/drinks?hours=' + hours).then(function(result) {
+        var sinceDate = moment().subtract(hours, 'hours').format('YYYY-MM-DD hh:mm:ss');
+        $http({
+            method: 'GET',
+            url: host + '/reports?sinceDate=' + sinceDate
+        }).then(function(result) {
             defer.resolve(result);
         }, function(error) {
             defer.reject(error);
@@ -22,8 +16,39 @@ angular.module('dashboard').factory('DashboardDataService', function($q, $http) 
         return defer.promise;
     }
 
+
+    function getTopDrinksEver() {
+        var defer = $q.defer();
+        $http({
+            method: 'GET',
+            url: host + '/reports?sinceDate=' + moment.min().format('YYYY-MM-DD hh:mm:ss') + '&topValue=10'
+        }).then(function(result) {
+            defer.resolve(result);
+        }, function(error) {
+            defer.reject(error);
+        });
+        return defer.promise;    
+    }
+
+
+    function getTopDrinksOfToday() {
+        var defer = $q.defer();
+        $http({
+            method: 'GET',
+            url: host + '/reports?sinceDate=' +  moment().subtract(24, 'hours').format('YYYY-MM-DD hh:mm:ss') + '&topValue=10'
+        }).then(function(result) {
+            defer.resolve(result);
+        }, function(error) {
+            defer.reject(error);
+        });
+        return defer.promise;    
+    }
+
+
     return {
-        getDrinks: getDrinks,
-        getDrinksByHours: getDrinksByHours     
+        getDrinksByHours: getDrinksByHours,
+        getTopDrinksEver: getTopDrinksEver,
+        getTopDrinksOfToday: getTopDrinksOfToday,
+
     };
-});
+}]);
