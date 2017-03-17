@@ -35,12 +35,7 @@ angular
             data: {
                 x: 'x',
                 columns: [],
-                type: 'bar',
-                colors: {
-                    value: function (d) {
-                        return '#' + (0xff0000 + (d.value - 25) * 256 * 3).toString(16);
-                    }
-                }
+                type: 'bar'
             },
             axis: {
                 rotated: true,
