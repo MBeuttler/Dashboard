@@ -45,10 +45,39 @@ angular.module('dashboard').factory('DashboardDataService', ['$q', '$http', 'mom
     }
 
 
+    function getFavoriteJuices() {
+        var defer = $q.defer();
+        $http({
+            method: 'GET',
+            url: host + '/reports/favorit?sinceDate=' +  moment().subtract(24, 'hours').format('YYYY-MM-DD hh:mm:ss')
+        }).then(function(result) {
+            defer.resolve(result);
+        }, function(error) {
+            defer.reject(error);
+        });
+        return defer.promise;
+    }
+
+
+    function getWorkload() {
+        var defer = $q.defer();
+        $http({
+            method: 'GET',
+            url: host + '/reports/workload?sinceDate=' +  moment().startOf('day').format('YYYY-MM-DD hh:mm:ss')
+        }).then(function(result) {
+            defer.resolve(result);
+        }, function(error) {
+            defer.reject(error);
+        });
+        return defer.promise;
+    }
+
+
     return {
         getDrinksByHours: getDrinksByHours,
         getTopDrinksEver: getTopDrinksEver,
         getTopDrinksOfToday: getTopDrinksOfToday,
-
+        getFavoriteJuices: getFavoriteJuices,
+        getWorkload: getWorkload
     };
 }]);

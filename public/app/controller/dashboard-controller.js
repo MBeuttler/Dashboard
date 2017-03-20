@@ -71,6 +71,51 @@ angular
             }
         };
 
+        var dailyWorkload = {
+            data: {
+                columns: [],
+                type: 'bar',
+                groups: []
+            },
+            axis: {
+                x: {
+                    type: 'category',
+                    categories: [
+                        '0-1',
+                        '1-2',
+                        '2-3',
+                        '3-4',
+                        '4-5',
+                        '5-6',
+                        '6-7',
+                        '7-8',
+                        '8-9',
+                        '9-10',
+                        '10-11',
+                        '11-12',
+                        '12-13',
+                        '13-14',
+                        '14-15',
+                        '15-16',
+                        '16-17',
+                        '17-18',
+                        '18-19',
+                        '19-20',
+                        '20-21',
+                        '21-22',
+                        '22-23',
+                        '23-0'
+                    ]
+                }
+            },
+            legend: {
+                show: false
+            },
+            transition: {
+                duration: 1000
+            }
+        };
+
         $scope.chart = donut;
 
         $scope.clickEvent = function (datum, mouseEvent) {
@@ -88,8 +133,8 @@ angular
         }
 
 
-        $scope.getTopDrinksEver = function() {
-             dashboardDataService.getTopDrinksEver().then(function (data) {
+        $scope.getTopDrinksEver = function () {
+            dashboardDataService.getTopDrinksEver().then(function (data) {
                 var drinks = data.data;
                 drinks.sort(function (a, b) {
                     return b.rank - a.rank;
@@ -141,10 +186,121 @@ angular
             });
         }
 
+        $scope.getFavoriteJuices = function () {
+            dashboardDataService.getFavoriteJuices().then(function (data) {
+                var juices = data.data;
+                donut.data.columns = [];
+
+                juices.forEach(function (drink) {
+                    var item = [drink.componentname, drink.amount];
+                    donut.data.columns.push(item);
+                }, this);
+
+                $scope.donutChart = donut;
+            }, function (error) {
+                console.log(error);
+            });
+        }
+
+        $scope.getWorkload = function () {
+            dashboardDataService.getTopDrinksEver().then(function (data) {
+                data.data = [
+                {
+                    "technologydataname": "Bier",
+                    "amount": 20,
+                    "dayhour": "0" // Von 0 bis 1 
+                },
+                {
+                    "technologydataname": "Schnaps",
+                    "amount": 50,
+                    "dayhour": "0" // Von 0 bis 1 
+                },
+                {
+                    "technologydataname": "Pangalaktischer Donnergurgler",
+                    "amount": 11,
+                    "dayhour": "8" // Von 8 bis 9 
+                },
+                {
+                    "technologydataname": "Pangalaktischer Donnergurgler 2.0",
+                    "amount": 50,
+                    "dayhour": "8" // Von 8 bis 9 
+                },
+                {
+                    "technologydataname": "Pangalaktischer Donnergurgler",
+                    "amount": 05,
+                    "dayhour": "9" // Von 8 bis 9 
+                },
+                {
+                    "technologydataname": "Pangalaktischer Donnergurgler 2.0",
+                    "amount": 145,
+                    "dayhour": "9" // Von 8 bis 9 
+                },
+                {
+                    "technologydataname": "Bier",
+                    "amount": 60,
+                    "dayhour": "23" // Von 0 bis 1 
+                },
+                {
+                    "technologydataname": "Schnaps",
+                    "amount": 23,
+                    "dayhour": "23" // Von 0 bis 1 
+                }]
+
+                dailyWorkload.data.columns = [];
+                dailyWorkload.data.groups = [];
+                var drinks = getDistinctTechnologyData(data.data);
+                
+                for(var index in drinks) {
+                    dailyWorkload.data.columns.push(new Array(drinks[index]));
+                }
+                
+                for(var i = 0; i <= 23; i++) {
+                    dailyWorkload.data.columns.forEach(function(column) {
+                        column.push(0);
+                    }, this);
+
+                    data.data.forEach(function(technologyData) {
+                        if (technologyData.dayhour == i) {
+                            dailyWorkload.data.columns.forEach(function(column) {
+                                if (column[0] === technologyData.technologydataname) {
+                                    column[i+1] += technologyData.amount;
+                                }    
+                            }, this);
+                        }
+                    }, this);          
+                }
+
+                dailyWorkload.data.groups.push(drinks);
+                $scope.dailyWorkload = dailyWorkload;
+
+            }, function (error) {
+                console.log(error);
+            });
+        }
+
+        function getDistinctTechnologyData(data) {
+            var technologies = [];
+            var exists = false;
+            for(var i in data) {
+                for(var j in technologies) {
+                    if (technologies[j] === data[i].technologydataname) {
+                        exists = true;
+                        break;
+                    }
+                }
+                if (!exists) {
+                    technologies.push(data[i].technologydataname)
+                }
+            }
+            return technologies;
+        }
+
         var getData = function () {
             $scope.getDrinksByHours(5);
             $scope.getTopDrinksOfToday();
             $scope.getTopDrinksEver();
+            $scope.getFavoriteJuices();
+            $scope.getWorkload();
             nextLoad();
         }
 
