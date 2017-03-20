@@ -37,7 +37,7 @@
 <body ng-controller='DashboardController'>
 
     <!-- Slider main container -->
-    <div class="swiper-container" >
+    <div id="swiper" class="swiper-container" >
         <!-- Additional required wrapper -->
         <div class="swiper-wrapper">
             <!-- Slides -->
@@ -52,9 +52,6 @@
             </div>
             <div class="swiper-slide">
                 <div c3="topToday"></div>
-            </div>
-            <div class="swiper-slide">
-                <div c3="pieChart"></div>
             </div>
             <div class="swiper-slide">
                 <div c3="dailyWorkload"></div>
@@ -82,7 +79,11 @@
                 centeredSlides: true,
                 autoplay: 5000,
                 loop: false
-            })
+            });
+        });
+
+        $(window).resize(function() {
+            //$('#swiper').width();
         });
     </script>
 

@@ -1,7 +1,6 @@
 angular
     .module('dashboard')
     .controller('DashboardController', ['$scope', '$timeout', 'DashboardDataService', function ($scope, $timeout, dashboardDataService) {
-
         var donut = {
             data: {
                 columns: [],
@@ -15,19 +14,6 @@ angular
                         return d3.format()(value);
                     }
                 }
-            },
-            transition: {
-                duration: 1000
-            }
-        };
-
-        var pie = {
-            data: {
-                columns: [],
-                type: 'pie'
-            },
-            transition: {
-                duration: 1000
             }
         };
 
@@ -45,9 +31,6 @@ angular
             },
             legend: {
                 show: false
-            },
-            transition: {
-                duration: 1000
             }
         };
 
@@ -65,9 +48,6 @@ angular
             },
             legend: {
                 show: false
-            },
-            transition: {
-                duration: 1000
             }
         };
 
@@ -109,13 +89,22 @@ angular
                 }
             },
             legend: {
-                show: false
+                position: 'right'
             },
-            transition: {
-                duration: 1000
+            regions: [
+                { start: 8, end: 20 }
+            ],
+            grid: {
+                x: {
+                    show: false
+                },
+                y: {
+                    show: true
+                }
             }
         };
 
+        console.log($scope.chart);
         $scope.chart = donut;
 
         $scope.clickEvent = function (datum, mouseEvent) {
@@ -153,6 +142,7 @@ angular
                 topEver.data.columns.push(values);
 
                 $scope.topEver = topEver;
+                console.log($scope.topEver);
 
             }, function (error) {
                 console.log(error);
@@ -205,69 +195,69 @@ angular
         $scope.getWorkload = function () {
             dashboardDataService.getTopDrinksEver().then(function (data) {
                 data.data = [
-                {
-                    "technologydataname": "Bier",
-                    "amount": 20,
-                    "dayhour": "0" // Von 0 bis 1 
-                },
-                {
-                    "technologydataname": "Schnaps",
-                    "amount": 50,
-                    "dayhour": "0" // Von 0 bis 1 
-                },
-                {
-                    "technologydataname": "Pangalaktischer Donnergurgler",
-                    "amount": 11,
-                    "dayhour": "8" // Von 8 bis 9 
-                },
-                {
-                    "technologydataname": "Pangalaktischer Donnergurgler 2.0",
-                    "amount": 50,
-                    "dayhour": "8" // Von 8 bis 9 
-                },
-                {
-                    "technologydataname": "Pangalaktischer Donnergurgler",
-                    "amount": 05,
-                    "dayhour": "9" // Von 8 bis 9 
-                },
-                {
-                    "technologydataname": "Pangalaktischer Donnergurgler 2.0",
-                    "amount": 145,
-                    "dayhour": "9" // Von 8 bis 9 
-                },
-                {
-                    "technologydataname": "Bier",
-                    "amount": 60,
-                    "dayhour": "23" // Von 0 bis 1 
-                },
-                {
-                    "technologydataname": "Schnaps",
-                    "amount": 23,
-                    "dayhour": "23" // Von 0 bis 1 
-                }]
+                    {
+                        "technologydataname": "Bier",
+                        "amount": 20,
+                        "dayhour": "0" // Von 0 bis 1 
+                    },
+                    {
+                        "technologydataname": "Schnaps",
+                        "amount": 50,
+                        "dayhour": "0" // Von 0 bis 1 
+                    },
+                    {
+                        "technologydataname": "Pangalaktischer Donnergurgler",
+                        "amount": 11,
+                        "dayhour": "8" // Von 8 bis 9 
+                    },
+                    {
+                        "technologydataname": "Pangalaktischer Donnergurgler 2.0",
+                        "amount": 50,
+                        "dayhour": "8" // Von 8 bis 9 
+                    },
+                    {
+                        "technologydataname": "Pangalaktischer Donnergurgler",
+                        "amount": 05,
+                        "dayhour": "9" // Von 8 bis 9 
+                    },
+                    {
+                        "technologydataname": "Pangalaktischer Donnergurgler 2.0",
+                        "amount": 145,
+                        "dayhour": "9" // Von 8 bis 9 
+                    },
+                    {
+                        "technologydataname": "Bier",
+                        "amount": 60,
+                        "dayhour": "23" // Von 0 bis 1 
+                    },
+                    {
+                        "technologydataname": "Schnaps",
+                        "amount": 23,
+                        "dayhour": "23" // Von 0 bis 1 
+                    }]
 
                 dailyWorkload.data.columns = [];
                 dailyWorkload.data.groups = [];
                 var drinks = getDistinctTechnologyData(data.data);
-                
-                for(var index in drinks) {
+
+                for (var index in drinks) {
                     dailyWorkload.data.columns.push(new Array(drinks[index]));
                 }
-                
-                for(var i = 0; i <= 23; i++) {
-                    dailyWorkload.data.columns.forEach(function(column) {
+
+                for (var i = 0; i <= 23; i++) {
+                    dailyWorkload.data.columns.forEach(function (column) {
                         column.push(0);
                     }, this);
 
-                    data.data.forEach(function(technologyData) {
+                    data.data.forEach(function (technologyData) {
                         if (technologyData.dayhour == i) {
-                            dailyWorkload.data.columns.forEach(function(column) {
+                            dailyWorkload.data.columns.forEach(function (column) {
                                 if (column[0] === technologyData.technologydataname) {
-                                    column[i+1] += technologyData.amount;
-                                }    
+                                    column[i + 1] += technologyData.amount;
+                                }
                             }, this);
                         }
-                    }, this);          
+                    }, this);
                 }
 
                 dailyWorkload.data.groups.push(drinks);
@@ -281,8 +271,8 @@ angular
         function getDistinctTechnologyData(data) {
             var technologies = [];
             var exists = false;
-            for(var i in data) {
-                for(var j in technologies) {
+            for (var i in data) {
+                for (var j in technologies) {
                     if (technologies[j] === data[i].technologydataname) {
                         exists = true;
                         break;
