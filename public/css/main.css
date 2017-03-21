@@ -1,23 +1,82 @@
+@import 'fonts.css';
+
+html,
+body,
+.container {
+    padding: 0 0;
+    margin: 0 0;
+    background-color: #000;
+}
+
+
+.column.right {
+    height: 100%;
+}
+
+.column.left {
+    border-right: 15px solid black;
+    background: #fff;
+}
+.header {
+    height: 120px;
+    padding:2em;
+}
+.header img.logo {
+    display: block;
+    padding-top: 3%;
+    width: 250px;
+    margin: auto;
+    
+}
+
+.column.right .header {
+    
+  
+}
+
+.column.left .header {
+    background-image: url('../img/bg_blue.jpg');
+  
+}
+
 .swiper-container {
-    width: 85%;
-    height: 85%;
-    position: absolute;
-    top: 8%;
-    left: 8%;
+    width: 100%;
+    border-top: 1px solid black;
+
 }
 
 .swiper-slide {
     margin-bottom: 35px;
 }
 
-.chart {
+.swiper-slide img{
+    width: 100%;
+}
+
+.swiper-pagination-bullet {
+    background: white;
+}
+/*.chart {
     width: 85%;
     height: 85%;  
     position: absolute;
     top: 1%;
     left: 8%;
-}
+}*/
 
 .chartHeadline {
     position: middle;
+}
+
+
+.diagram{
+    width: 48%; 
+
+    padding: 1%;
+
+    float:left;
+    display: inline;
+    box-sizing: border-box;
+    overflow: hidden;
+    
 }
