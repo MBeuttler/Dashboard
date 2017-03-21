@@ -171,7 +171,6 @@ angular
 
             $scope.getFavoriteJuices = function () {
                 dashboardDataService.getFavoriteJuices().then(function (data) {
-                    console.log(data);
                     var juices = data.data;
                     $scope.donut.data.columns = [];
 

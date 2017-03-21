@@ -43,18 +43,23 @@
         <div class="swiper-wrapper">
             <!-- Slides -->
             <div class="swiper-slide">
+                <h1 class="chartHeadline">Amount of mixed drinks during the last 5 hours</h1>
                 <div>{{getactivatedlicensessince}}</div>
             </div>
             <div class="swiper-slide">
+                <h1>Favorite juices</h1>
                 <div c3-simple class="chart" id="donut" config="donut"></div>
             </div>
             <div class="swiper-slide">
+                <h1>Top 10 drinks ever</h1>
                 <div c3-simple class="chart" id="topEver" config="topEver"></div>
             </div>
             <div class="swiper-slide">
+                <h1>Top 10 drinks of today</h1>
                 <div c3-simple class="chart" id="topToday" config="topToday"></div>
             </div>
             <div class="swiper-slide">
+                <h1>Histogram about workload over the day</h1>
                 <div c3-simple class="chart" id="dailyWorkload" config="dailyWorkload"></div>
             </div>
         </div>
@@ -70,7 +75,7 @@
                 paginationClickable: true,
                 centeredSlides: true,
                 autoplay: 5000,
-                loop: false
+                loop: true
             });
         });
     </script>
