@@ -3,9 +3,17 @@
     height: 85%;
     position: absolute;
     top: 8%;
-    left: 8%
+    left: 8%;
 }
 
 .swiper-slide {
     margin-bottom: 35px;
+}
+
+.chart {
+    width: 85%;
+    height: 85%;  
+    position: absolute;
+    top: 8%;
+    left: 8%;
 }

@@ -21,7 +21,7 @@ angular.module('dashboard').factory('DashboardDataService', ['$q', '$http', 'mom
         var defer = $q.defer();
         $http({
             method: 'GET',
-            url: host + '/reports?sinceDate=' + moment.min().format('YYYY-MM-DD hh:mm:ss') + '&topValue=10'
+            url: host + '/reports?sinceDate=' + moment('1970-01-01').format('YYYY-MM-DD hh:mm:ss') + '&topValue=10'
         }).then(function(result) {
             defer.resolve(result);
         }, function(error) {
@@ -49,7 +49,7 @@ angular.module('dashboard').factory('DashboardDataService', ['$q', '$http', 'mom
         var defer = $q.defer();
         $http({
             method: 'GET',
-            url: host + '/reports/favorit?sinceDate=' +  moment().subtract(24, 'hours').format('YYYY-MM-DD hh:mm:ss')
+            url: host + '/reports/favorit?sinceDate=' +  moment().subtract(48, 'hours').format('YYYY-MM-DD hh:mm:ss')
         }).then(function(result) {
             defer.resolve(result);
         }, function(error) {

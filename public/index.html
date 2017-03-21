@@ -15,7 +15,8 @@
     <script src="js/d3.min.js" charset="utf-8"></script>
     <script src="js/c3.min.js"></script>
     <script src="js/angular.min.js"></script>
-    <script src="js/angular-c3.js"></script>
+    <script src="js/angular_c3_simple.js"></script>
+    <!--<script src="js/angular-c3.js"></script>-->
     <script src="js/moment.js"></script>
     <script src="js/angular-moment.js"></script>
 
@@ -45,27 +46,20 @@
                 <div>{{getactivatedlicensessince}}</div>
             </div>
             <div class="swiper-slide">
-                <div c3="donutChart"></div>
+                <div c3-simple class="chart" id="donut" config="donut"></div>
             </div>
             <div class="swiper-slide">
-                <div c3="topEver"></div>
+                <div c3-simple class="chart" id="topEver" config="topEver"></div>
             </div>
             <div class="swiper-slide">
-                <div c3="topToday"></div>
+                <div c3-simple class="chart" id="topToday" config="topToday"></div>
             </div>
             <div class="swiper-slide">
-                <div c3="dailyWorkload"></div>
+                <div c3-simple class="chart" id="dailyWorkload" config="dailyWorkload"></div>
             </div>
         </div>
         <!-- If we need pagination -->
         <div class="swiper-pagination"></div>
-
-        <!-- If we need navigation buttons -->
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-button-next"></div>
-
-        <!-- If we need scrollbar -->
-        <div class="swiper-scrollbar"></div>
     </div>
 
     <script>
@@ -73,17 +67,11 @@
             //initialize swiper when document ready  
             var mySwiper = new Swiper('.swiper-container', {
                 pagination: '.swiper-pagination',
-                nextButton: '.swiper-button-next',
-                prevButton: '.swiper-button-prev',
                 paginationClickable: true,
                 centeredSlides: true,
                 autoplay: 5000,
                 loop: false
             });
-        });
-
-        $(window).resize(function() {
-            //$('#swiper').width();
         });
     </script>
 
