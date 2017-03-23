@@ -38,10 +38,16 @@
 
 <body ng-controller='DashboardController'>
 <div class="container">
-   
-    <div class="one-half column left ">
-
-           <div class="header">
+        <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="img/slide0.svg" /></div>
+            <div class="swiper-slide"><img src="img/slide1.svg" /></div>
+            <div class="swiper-slide"><img src="img/slide2.svg" /></div>
+            <div class="swiper-slide"><img src="img/slide3.svg" /></div>
+            <div class="swiper-slide"><img src="img/slide4.svg" /></div>
+            <div class="swiper-slide"><img src="img/slide5.svg" /></div>
+            <div class="swiper-slide">
+            <div class="header">
                <h2>IUNO Demonstrator</h2>
                 <h3 class="chartHeadline">Amount of mixed drinks during the last 5 hours: {{getactivatedlicensessince}} </h3>
             </div>
@@ -61,22 +67,10 @@
                 <h4>Histogram about workload over the day</h4>
                 <div c3-simple class="chart" id="dailyWorkload" config="dailyWorkload"></div>
             </div> 
-        
-    </div>
-  
-   
-    <div class="one-half column right">
-       <div class="header">
-       <!-- <img class="logo" src="img/logo_iuno_rgb_rz_01.svg" />-->
-      </div>
-        <div class="swiper-container">
-        <div class="swiper-wrapper">
-            <div class="swiper-slide"><img src="img/slide0.svg" /></div>
-            <div class="swiper-slide"><img src="img/slide1.svg" /></div>
-            <div class="swiper-slide"><img src="img/slide2.svg" /></div>
-            <div class="swiper-slide"><img src="img/slide3.svg" /></div>
-            <div class="swiper-slide"><img src="img/slide4.svg" /></div>
-            <div class="swiper-slide"><img src="img/slide5.svg" /></div>
+                
+            </div>        
+
+
         </div>
         <!-- Add Pagination -->
         <div class="swiper-pagination"></div>
@@ -84,13 +78,6 @@
 
     </div> 
     </div>
-
-
-
-   
-
-    </div>
-
 
     <!-- Slider main container -->
 

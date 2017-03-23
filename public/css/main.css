@@ -5,7 +5,7 @@ body,
 .container {
     padding: 0 0;
     margin: 0 0;
-    background-color: #000;
+    background-color: white;
 }
 
 
@@ -18,30 +18,15 @@ body,
     background: #fff;
 }
 .header {
+    background-image: url('../img/bg_blue.jpg');
     height: 120px;
     padding:2em;
 }
-.header img.logo {
-    display: block;
-    padding-top: 3%;
-    width: 250px;
-    margin: auto;
-    
-}
 
-.column.right .header {
-    
-  
-}
-
-.column.left .header {
-    background-image: url('../img/bg_blue.jpg');
-  
-}
 
 .swiper-container {
-    width: 100%;
-    border-top: 1px solid black;
+    width: 98%;
+  
 
 }
 
