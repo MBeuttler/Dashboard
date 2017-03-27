@@ -1,6 +1,6 @@
 angular.module('dashboard').factory('DashboardDataService', ['$q', '$http', 'moment', function($q, $http, moment) {
     
-    var host = 'http://136.230.9.68:3002';
+    var host = 'http://localhost:3002';
 
     function getDrinksByHours(hours) {
         var defer = $q.defer();
@@ -49,7 +49,7 @@ angular.module('dashboard').factory('DashboardDataService', ['$q', '$http', 'mom
         var defer = $q.defer();
         $http({
             method: 'GET',
-            url: host + '/reports/favorit?sinceDate=' +  moment().subtract(48, 'hours').format('YYYY-MM-DD hh:mm:ss')
+            url: host + '/reports/favorit?sinceDate=' +  moment().subtract(24, 'hours').format('YYYY-MM-DD hh:mm:ss')
         }).then(function(result) {
             defer.resolve(result);
         }, function(error) {

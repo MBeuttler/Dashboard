@@ -8,7 +8,6 @@ body,
     background-color: white;
 }
 
-
 .column.right {
     height: 100%;
 }
@@ -22,7 +21,6 @@ body,
     height: 120px;
     padding:2em;
 }
-
 
 .swiper-container {
     width: 98%;
@@ -38,25 +36,13 @@ body,
     width: 100%;
 }
 
-
-/*.chart {
-    width: 85%;
-    height: 85%;  
-    position: absolute;
-    top: 1%;
-    left: 8%;
-}*/
-
 .chartHeadline {
     position: middle;
 }
 
-
 .diagram{
     width: 48%; 
-
     padding: 1%;
-
     float:left;
     display: inline;
     box-sizing: border-box;

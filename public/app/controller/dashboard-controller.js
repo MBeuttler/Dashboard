@@ -186,49 +186,6 @@ angular
 
             $scope.getWorkload = function () {
                 dashboardDataService.getWorkload().then(function (data) {
-
-                    data.data = [
-                        {
-                            "technologydataname": "Bier",
-                            "amount": 20,
-                            "dayhour": "0" // Von 0 bis 1 
-                        },
-                        {
-                            "technologydataname": "Schnaps",
-                            "amount": 50,
-                            "dayhour": "0" // Von 0 bis 1 
-                        },
-                        {
-                            "technologydataname": "Pangalaktischer Donnergurgler",
-                            "amount": 11,
-                            "dayhour": "8" // Von 8 bis 9 
-                        },
-                        {
-                            "technologydataname": "Pangalaktischer Donnergurgler 2.0",
-                            "amount": 50,
-                            "dayhour": "8" // Von 8 bis 9 
-                        },
-                        {
-                            "technologydataname": "Pangalaktischer Donnergurgler",
-                            "amount": 05,
-                            "dayhour": "9" // Von 8 bis 9 
-                        },
-                        {
-                            "technologydataname": "Pangalaktischer Donnergurgler 2.0",
-                            "amount": 145,
-                            "dayhour": "9" // Von 8 bis 9 
-                        },
-                        {
-                            "technologydataname": "Bier",
-                            "amount": 60,
-                            "dayhour": "23" // Von 0 bis 1 
-                        },
-                        {
-                            "technologydataname": "Schnaps",
-                            "amount": 23,
-                            "dayhour": "23" // Von 0 bis 1 
-                        }]
-
                     $scope.dailyWorkload.data.columns = [];
                     $scope.dailyWorkload.data.groups = [];
                     var drinks = getDistinctTechnologyData(data.data);
@@ -278,7 +235,7 @@ angular
             }
 
             var getData = function () {
-                $scope.getDrinksByHours(10);
+                $scope.getDrinksByHours(5);
                 $scope.getTopDrinksOfToday();
                 $scope.getTopDrinksEver();
                 $scope.getFavoriteJuices();
@@ -286,7 +243,7 @@ angular
                 nextLoad();
             }
 
-            var loadTime = 10000;
+            var loadTime = 60000;
             var loadPromise; //Pointer to the promise created by the Angular $timout service
 
             var cancelNextLoad = function () {
